@@ -57,12 +57,7 @@ export default function Rightbar({ user }) {
   };
 
   useEffect(() => {
-    socket.current = io("https://socket-captiona.herokuapp.com/", {
-      withCredentials: true,
-      extraHeaders: {
-        "my-custom-header": "abcd",
-      },
-    }); //Web-socket
+    socket.current = io("https://socket-captiona.herokuapp.com/"); //Web-socket
   }, []);
 
   useEffect(() => {
