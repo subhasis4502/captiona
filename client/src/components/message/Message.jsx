@@ -1,6 +1,7 @@
 import "./message.css";
 import { format } from "timeago.js";
 import { useEffect, useState } from "react";
+import { axiosInstance } from "../../config";
 
 export default function Message({ message, own }) {
   const [user, setUser] = useState(null);
