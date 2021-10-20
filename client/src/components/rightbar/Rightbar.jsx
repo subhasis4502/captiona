@@ -24,7 +24,9 @@ export default function Rightbar({ user }) {
   useEffect(() => {
     const getFriends = async () => {
       try {
-        const friendList = await axiosInstance.get("/users/friends/" + user._id);
+        const friendList = await axiosInstance.get(
+          "/users/friends/" + user._id
+        );
         setFriends(friendList.data);
       } catch (err) {
         console.log(err);
@@ -55,7 +57,12 @@ export default function Rightbar({ user }) {
   };
 
   useEffect(() => {
-    socket.current = io("https://socket-captiona.herokuapp.com");
+    socket.current = io("https://socket-captiona.herokuapp.com/", {
+      withCredentials: true,
+      extraHeaders: {
+        "my-custom-header": "abcd",
+      },
+    }); //Web-socket
   }, []);
 
   useEffect(() => {
@@ -96,7 +103,10 @@ export default function Rightbar({ user }) {
           </button>
         )}
         {user.username === currentUser.username && (
-          <Link to={`/${user.username}/edit`} style={{textDecoration:"none"}}>
+          <Link
+            to={`/${user.username}/edit`}
+            style={{ textDecoration: "none" }}
+          >
             <button className="updateProfile">
               <Edit /> Edit Profile
             </button>
