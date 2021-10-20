@@ -55,7 +55,7 @@ export default function Rightbar({ user }) {
   };
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io("https://socket-captiona.herokuapp.com");
   }, []);
 
   useEffect(() => {
