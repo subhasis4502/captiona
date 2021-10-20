@@ -1,0 +1,13 @@
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.userInput {
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 5px;
+    width: 30%;
+}
