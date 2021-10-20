@@ -10,7 +10,7 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "npm start --prefix client",
-    "socket": "node ../socket/index.js",
+    "socket": "node socket/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run socket\" ",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
