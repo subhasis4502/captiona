@@ -11,6 +11,7 @@ const conversationRoute = require("./routes/conversations");
 const messageRoute = require("./routes/messages");
 const router = express.Router();
 const path = require("path");
+const cors = require("cors");
 
 dotenv.config(); //Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env
 
@@ -28,6 +29,7 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 //Middleware
 app.use(express.json());
 app.use(morgan("common"));
+app.use(cors());
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
