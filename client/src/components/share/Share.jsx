@@ -29,7 +29,7 @@ export default function Share() {
       data.append("name", fileName);
       data.append("file", file);
       newPost.img = fileName;
-      console.log(newPost);
+      // console.log(newPost);
       try {
         await axiosInstance.post("/upload", data);
       } catch (err) {}
@@ -45,7 +45,6 @@ export default function Share() {
       <div className="shareWrapper">
         <div className="shareTop">
           <Link to={`/profile/${user.username}`}>
-            {console.log(user)}
             <img
               className="shareProfileImg"
               src={
