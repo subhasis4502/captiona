@@ -19,7 +19,7 @@ export default function EditProfile() {
   const handleClick = async (e) => {
     e.preventDefault();
     const updatedUser = {
-      userid: user._id,
+      userId: user._id,
       password: "123456",
       name: name.current?.value,
       desc: bio.current?.value,
