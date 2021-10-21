@@ -30,7 +30,7 @@ export default function EditProfile() {
       //Error
       //Here it sends request to localhost:3000 but i want localhost:8000
       await axiosInstance.put(`/users/${user._id}`, updatedUser);
-      history.push(`/${user.name}`);
+      history.push(`/${user.username}`);
       alert("Profile Updated");
     } catch (err) {
       console.log(err);
