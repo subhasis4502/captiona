@@ -20,12 +20,11 @@ export default function EditProfile() {
     e.preventDefault();
     const updatedUser = {
       userId: user._id,
-      password: "123456",
-      name: name.current?.value,
-      desc: bio.current?.value,
-      city: city.current?.value,
-      from: country.current?.value,
-      relationship: relationship.current?.value,
+      name: name.current.value ? name.current.value : user.name,
+      desc: bio.current.value ? desc.current.value : user.desc,
+      city: city.current.value ? city.current.value : user.city,
+      from: country.current.value ? country.current.value : user.from,
+      relationship: relationship.current.value ? relationship.current.value : user.relationship,
     };
     try {
       //Error
