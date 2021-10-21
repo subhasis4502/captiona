@@ -21,7 +21,7 @@ export default function EditProfile() {
     const updatedUser = {
       userId: user._id,
       name: name.current.value ? name.current.value : user.name,
-      desc: bio.current.value ? desc.current.value : user.desc,
+      desc: bio.current.value ? bio.current.value : user.desc,
       city: city.current.value ? city.current.value : user.city,
       from: country.current.value ? country.current.value : user.from,
       relationship: relationship.current.value ? relationship.current.value : user.relationship,
