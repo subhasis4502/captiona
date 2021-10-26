@@ -13,6 +13,15 @@ const router = express.Router();
 const path = require("path");
 const cors = require("cors");
 
+// Integrating the socket-io
+const server = require("http").createServer(app);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "https://captiona.herokuapp.com",
+  },
+});
+
+
 dotenv.config(); //Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env
 
 //Connecting to our database
@@ -61,6 +70,48 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "/client/build", "index.html"));
 });
 
-app.listen(process.env.PORT || 8800, () => {
+let users = [];
+
+const addUser = (userId, socketId) => {
+  !users.some((user) => user.userId === userId) &&
+    users.push({ userId, socketId });
+};
+
+const removeUser = (socketId) => {
+  users = users.filter((user) => user.socketId !== socketId);
+};
+
+const getUser = (userId) => {
+  return users.find((user) => user.userId === userId);
+};
+
+io.on("connection", (socket) => {
+  //When connected
+  console.log("A user connected.");
+  
+  //Take user-id and socket-id from user
+  socket.on("addUser", (userId) => {
+    addUser(userId, socket.id);
+    io.emit("getUsers", users);
+  });
+
+  //Send and get message
+  socket.on("sendMessage", ({ senderId, receiverId, text }) => {
+    const user = getUser(receiverId);
+    io.to(user.socketId).emit("getMessage", {
+      senderId,
+      text,
+    });
+  });
+
+  //When disconnect
+  socket.on("disconnect", () => {
+    console.log("A user disconnected!");
+    removeUser(socket.id);
+    io.emit("getUsers", users);
+  });
+});
+
+server.listen(process.env.PORT || 8800, () => {
   console.log("Backend Server is running!");
 });
