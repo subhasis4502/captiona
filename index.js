@@ -15,11 +15,7 @@ const cors = require("cors");
 
 // Integrating the socket-io
 const server = require("http").createServer(app);
-const io = require("socket.io")(server, {
-  cors: {
-    origin: '*',
-  },
-});
+const io = require("socket.io")(server);
 
 
 dotenv.config(); //Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env

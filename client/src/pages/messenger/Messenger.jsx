@@ -21,7 +21,7 @@ export default function Messenger() {
   const scrollRef = useRef();
 
   useEffect(() => {
-    socket.current = io("https://socket-captiona.herokuapp.com/"); //Web-socket
+    socket.current = io("https://captiona.herokuapp.com/"); //Web-socket
     socket.current.on("getMessage", (data) => {
       setArrivalMessage({
         sender: data.senderId,
