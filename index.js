@@ -15,7 +15,12 @@ const cors = require("cors");
 
 // Integrating the socket-io
 const server = require("http").createServer(app);
-const io = require("socket.io")(server);
+const io = require("socket.io")(server, {
+  cors: {
+    origin: '*',
+  },
+});
+
 
 dotenv.config(); //Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env
 
@@ -29,14 +34,6 @@ mongoose.connect(
 );
 
 app.use("/images", express.static(path.join(__dirname, "public/images")));
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", '*');
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-  next();
-});
 
 //Middleware
 app.use(express.json());
