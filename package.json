@@ -9,9 +9,8 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "client": "npm start --prefix client",
-    "socket": "node socket/index.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run socket\" ",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\" ",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "author": "",
