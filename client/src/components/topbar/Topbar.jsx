@@ -27,7 +27,7 @@ export default function Topbar() {
 
   const handleLogout = async (e) => {
     localStorage.clear();
-    window.location.reload();
+    document.location.href = "/";
   }
 
   return (
