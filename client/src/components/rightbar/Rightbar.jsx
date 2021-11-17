@@ -123,8 +123,8 @@ export default function Rightbar({ user }) {
               {user.relationship === 1
                 ? "Single"
                 : user.relationship === 2
-                ? "Married"
-                : "In relationship"}
+                ? "In relationship"
+                : "Married"}
             </span>
           </div>
         </div>
